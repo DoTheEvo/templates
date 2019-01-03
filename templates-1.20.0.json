@@ -670,7 +670,7 @@
     ]
   },
   {
-  "type": 1,
+    "type": 1,
     "title": "File browser",
     "description": "A web file manager",
     "note": "Default credentials: admin/admin",
