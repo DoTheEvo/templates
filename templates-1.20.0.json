@@ -646,20 +646,31 @@
   },
   {
     "type": 1,
-    "title": "Urbackup",
-    "description": "Open-source network backup",
+    "title": "UrBackup",
+    "description": "Open-source network backup server",
+    "note": "Available at port 55414, running privileged for btrfs support, --network host for client discovery to work",
     "categories": ["backup"],
     "platform": "linux",
-    "note": "This application web interface is exposed on the port 55414 inside the container.",
     "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/urbackup.png",
-    "image": "cfstras/urbackup",
+    "image": "uroni/urbackup-server",
+    "privileged": true,
+    "network": "host",
     "ports": [
-      "55413/tcp", "55414/tcp", "55415/tcp", "35622/tcp"
+      "55413:55413/tcp", "55414:55414/tcp", "55415:55415/tcp", "35623:35623/udp"
     ],
-    "volumes": [{"container": "/var/urbackup"}]
+    "volumes": [
+      {
+        "container": "/backups",
+        "bind": "/media/backups"
+      },
+      {
+        "container": "/var/urbackup",
+        "bind": "/media/database"
+      }
+    ]
   },
   {
-    "type": 1,
+  "type": 1,
     "title": "File browser",
     "description": "A web file manager",
     "note": "Default credentials: admin/admin",
